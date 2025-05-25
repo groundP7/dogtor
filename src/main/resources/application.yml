@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dogtor
+    username: root
+    password: 1234
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/jsp/
+      suffix: .jsp
