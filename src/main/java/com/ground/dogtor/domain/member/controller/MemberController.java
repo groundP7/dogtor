@@ -17,15 +17,15 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
-    @PostMapping("/signup")
-    public String signUp(HttpServletRequest httpServletRequest, @ModelAttribute MemberSignUpRequest memberSignbUpRequest){
-
-        memberService.signUp(memberSignbUpRequest);
-
-        return "signUp";
+    @GetMapping("/signup")
+    public String signUpPage(){
+        return "signUpPage";
     }
 
-    @GetMapping("/signup")
-
+//    @PostMapping("/signup")
+//    public String signUp(HttpServletRequest httpServletRequest, @ModelAttribute MemberSignUpRequest memberSignbUpRequest){
+//        memberService.signUp(memberSignbUpRequest);
+//        return "signUp";
+//    }
 
 }

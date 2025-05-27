@@ -8,3 +8,9 @@ spring:
     view:
       prefix: /WEB-INF/views/jsp/
       suffix: .jsp
+  web:
+    resources:
+      static-locations: classpath:/static/
+  logging:
+    level:
+      org.springframework.web: DEBUG

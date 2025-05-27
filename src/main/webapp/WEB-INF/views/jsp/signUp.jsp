@@ -2,145 +2,79 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>독터 회원가입</title>
+    <title>회원가입 완료 - Dogtor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --background-color: #f8f9fa;
+            --text-color: #343a40;
+        }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f8fb;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background-color);
             margin: 0;
             padding: 0;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
-            width: 480px;
-            margin: 50px auto;
+            width: 100%;
+            max-width: 480px;
+            margin: 20px;
             background: #fff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             text-align: center;
+        }
+
+        .success-icon {
+            font-size: 64px;
             margin-bottom: 24px;
-            color: #333;
         }
 
-        label {
-            display: block;
-            margin: 10px 0 6px;
-            font-weight: bold;
-            color: #555;
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 16px;
         }
 
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
-        input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 6px;
-            background-color: #4caf50;
+        .home-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
             color: white;
-            font-size: 16px;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        .postcode-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
+        .home-button:hover {
+            background-color: #ff5252;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h2>🐶 Dogtor 회원가입</h2>
-    <form action="/member/signup" method="post">
-        <label>아이디</label>
-        <input type="text" name="loginId" required/>
-
-        <label>비밀번호</label>
-        <input type="password" name="password" required/>
-
-        <label>이름</label>
-        <input type="text" name="name" required/>
-
-        <label>전화번호</label>
-        <input type="text" name="phoneNumber" required/>
-
-        <label>우편번호</label>
-        <div class="postcode-group">
-            <input type="text" id="sample6_postcode" name="postalCode" placeholder="우편번호" required/>
-            <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기"/>
-        </div>
-
-        <label>주소</label>
-        <input type="text" id="sample6_address" name="address" placeholder="주소" required/>
-
-        <label>상세주소</label>
-        <input type="text" id="sample6_detailAddress" name="detailAddress" placeholder="상세주소" required/>
-
-        <label>참고항목</label>
-        <input type="text" id="sample6_extraAddress" disabled placeholder="참고항목"/>
-
-        <label>
-            <input type="checkbox" name="smsAgree" value="true"/> SMS 수신 동의
-        </label>
-
-        <button type="submit" class="btn">회원가입</button>
-    </form>
-</div>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var addr = '';
-                var extraAddr = '';
-
-                if (data.userSelectedType === 'R') {
-                    addr = data.roadAddress;
-                } else {
-                    addr = data.jibunAddress;
-                }
-
-                if (data.userSelectedType === 'R') {
-                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                        extraAddr += data.bname;
-                    }
-                    if (data.buildingName !== '' && data.apartment === 'Y') {
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    if (extraAddr !== '') {
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
-
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
-                document.getElementById("sample6_detailAddress").focus();
-            }
-        }).open();
-    }
-</script>
+    <div class="container">
+        <div class="success-icon">🎉</div>
+        <h1>회원가입 완료!</h1>
+        <p>
+            Dogtor의 회원이 되신 것을 환영합니다.<br>
+            반려동물과 함께하는 건강한 삶이 시작됩니다.
+        </p>
+        <a href="/" class="home-button">홈으로 이동</a>
+    </div>
 </body>
 </html>
