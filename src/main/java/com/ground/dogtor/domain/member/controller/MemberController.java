@@ -22,11 +22,10 @@ public class MemberController {
 
         memberService.signUp(memberSignbUpRequest);
 
-        return "jsp/signUp";
+        return "signUp";
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
+    @GetMapping("/signup")
+
+
 }
