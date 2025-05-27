@@ -1,5 +1,6 @@
 package com.ground.dogtor.domain.member.controller;
 
+import com.ground.dogtor.domain.member.dto.MemberLoginRequest;
 import com.ground.dogtor.domain.member.dto.MemberSignUpRequest;
 import com.ground.dogtor.domain.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,10 +23,14 @@ public class MemberController {
         return "signUpPage";
     }
 
-//    @PostMapping("/signup")
-//    public String signUp(HttpServletRequest httpServletRequest, @ModelAttribute MemberSignUpRequest memberSignbUpRequest){
-//        memberService.signUp(memberSignbUpRequest);
-//        return "signUp";
-//    }
+    @PostMapping("/signup")
+    public String signUp(HttpServletRequest httpServletRequest, @ModelAttribute MemberSignUpRequest memberSignbUpRequest){
+        memberService.signUp(memberSignbUpRequest);
+        return "signUp";
+    }
 
+    @PostMapping("/login")
+    login(HttpServletRequest httpServletRequest, @ModelAttribute MemberLoginRequest memberLoginRequest){
+        memberService.login(memberLoginRequest);
+    }
 }
