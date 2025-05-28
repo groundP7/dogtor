@@ -14,3 +14,6 @@ spring:
   logging:
     level:
       org.springframework.web: DEBUG
+
+jwt:
+  secret: "dogtorSecretKey123!@#dogtorSecretKey123!@#dogtorSecretKey123!@#"  # 최소 32바이트 이상의 길이를 가진 키

@@ -98,6 +98,19 @@ public class MemberDAO {
         }
     }
 
+    public void updateRefreshToken(Long memberId, String refreshToken) {
+        try {
+            String sql = "UPDATE member SET refresh_token = ? WHERE id = ?";
+            int updatedRows = jdbcTemplate.update(sql, refreshToken, memberId);
+            
+            if (updatedRows != 1) {
+                throw new RuntimeException("Refresh Token 업데이트에 실패했습니다.");
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Refresh Token 업데이트 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
     private static class MemberRowMapper implements RowMapper<Member> {
         @Override
         public Member mapRow(ResultSet rs, int rowNum) throws SQLException {

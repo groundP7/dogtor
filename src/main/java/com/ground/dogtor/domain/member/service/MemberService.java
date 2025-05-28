@@ -2,9 +2,12 @@ package com.ground.dogtor.domain.member.service;
 
 import com.ground.dogtor.domain.member.dao.MemberDAO;
 import com.ground.dogtor.domain.member.dto.MemberLoginRequest;
+import com.ground.dogtor.domain.member.dto.MemberLoginResponse;
 import com.ground.dogtor.domain.member.dto.MemberSignUpRequest;
 import com.ground.dogtor.domain.member.entity.Member;
+import com.ground.dogtor.global.config.JwtConfig;
 import com.ground.dogtor.global.util.PasswordValidator;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,9 @@ public class MemberService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JwtConfig jwtConfig;
 
     @Transactional
     // 회원가입 처리 메서드
@@ -66,25 +72,42 @@ public class MemberService {
         memberDAO.signUpAddress(memberId, memberSignUpRequest);
     }
 
-    // 로그인 기능
-    login(MemberLoginRequest memberLoginRequest) {
-
-        // 1. 아이디 와 비빌번호를 전부 입력을 했는지 확인한다.
+    @Transactional
+    public MemberLoginResponse login(MemberLoginRequest memberLoginRequest) {
+        // 1. 입력값 검증
         if (memberLoginRequest.getLoginId() == null || memberLoginRequest.getLoginId().isEmpty()) {
             throw new IllegalArgumentException("아이디를 입력하세요.");
         }
 
         if (memberLoginRequest.getPassword() == null || memberLoginRequest.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("비밀번를 입력하세요.");
+            throw new IllegalArgumentException("비밀번호를 입력하세요.");
         }
 
-        // 2. 존재하는 아이디 인지 확인한다.
+        // 2. 회원 조회
         Member member = memberDAO.findByLoginId(memberLoginRequest);
+        if (member == null) {
+            throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
+        }
 
-        // 3. 비밀번호가 일치하는지 확인한다.
-        if (!passwordEncoder.matches(memberLoginRequest.getPassword(), member.getPassword())){
+        // 3. 비밀번호 확인
+        if (!passwordEncoder.matches(memberLoginRequest.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
-        // 4. 아이디와 비밀번호가 일치하면 토큰을 리턴한다.
+
+        // 4. 토큰 생성
+        String accessToken = jwtConfig.createAccessToken(member.getId());  // Access Token 생성 (짧은 유효기간)
+        String refreshToken = jwtConfig.createRefreshToken(member.getId()); // Refresh Token 생성 (긴 유효기간)
+
+        // 5. Refresh Token을 DB에 저장
+        memberDAO.updateRefreshToken(member.getId(), refreshToken);
+
+        // 6. 응답 데이터 생성 및 반환
+        return MemberLoginResponse.builder()
+                .memberId(member.getId())
+                .name(member.getName())
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
+
 }
