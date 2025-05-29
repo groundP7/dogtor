@@ -76,17 +76,17 @@ public class MemberService {
     public MemberLoginResponse login(MemberLoginRequest memberLoginRequest) {
         // 1. 입력값 검증
         if (memberLoginRequest.getLoginId() == null || memberLoginRequest.getLoginId().isEmpty()) {
-            throw new IllegalArgumentException("아이디를 입력하세요.");
+            throw new RuntimeException("아이디를 입력하세요.");
         }
 
         if (memberLoginRequest.getPassword() == null || memberLoginRequest.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("비밀번호를 입력하세요.");
+            throw new RuntimeException("비밀번호를 입력하세요.");
         }
 
         // 2. 회원 조회
         Member member = memberDAO.findByLoginId(memberLoginRequest);
         if (member == null) {
-            throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
+            throw new RuntimeException("존재하지 않는 아이디입니다.");
         }
 
         // 3. 비밀번호 확인
@@ -95,8 +95,10 @@ public class MemberService {
         }
 
         // 4. 토큰 생성
-        String accessToken = jwtConfig.createAccessToken(member.getId());  // Access Token 생성 (짧은 유효기간)
-        String refreshToken = jwtConfig.createRefreshToken(member.getId()); // Refresh Token 생성 (긴 유효기간)
+        // Access Token 생성
+        String accessToken = jwtConfig.createAccessToken(member.getId());
+        // Refresh Token 생성
+        String refreshToken = jwtConfig.createRefreshToken(member.getId());
 
         // 5. Refresh Token을 DB에 저장
         memberDAO.updateRefreshToken(member.getId(), refreshToken);

@@ -41,23 +41,10 @@ public class JwtConfig {
                 .compact();
     }
 
-    // Refresh Token 생성
-    public String createRefreshToken(Long userId) {
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + refreshTokenValidTime);
-
-        return Jwts.builder()
-                .subject(userId.toString())
-                .issuedAt(now)
-                .expiration(validity)
-                .signWith(key)
-                .compact();
-    }
-
     // JWT 토큰 검증 및 클레임 추출
     public Claims getTokenClaims(String token) {
         return Jwts.parser()
-                .verifyWith(key)
+                .verifyWith(key)  // Key를 SecretKey로 캐스팅
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
@@ -82,7 +69,20 @@ public class JwtConfig {
         return Long.parseLong(claims.getSubject());
     }
 
-    // Refresh Token 만료 임박 여부 확인 (3일 미만 남은 경우)
+    // Refresh Token 생성
+    public String createRefreshToken(Long userId) {
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + refreshTokenValidTime);
+
+        return Jwts.builder()
+                .subject(userId.toString())
+                .issuedAt(now)
+                .expiration(validity)
+                .signWith(key)
+                .compact();
+    }
+
+    // Refresh Token 만료 임박 여부 확인
     public boolean isRefreshTokenNearExpiration(String token) {
         try {
             Claims claims = getTokenClaims(token);
