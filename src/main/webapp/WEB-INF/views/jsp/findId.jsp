@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Dogtor - 로그인</title>
+    <title>Dogtor - 아이디 찾기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -50,7 +50,7 @@
             font-weight: bold;
         }
 
-        .login-container {
+        .find-container {
             background: white;
             padding: 40px;
             border-radius: 16px;
@@ -60,18 +60,18 @@
             margin: 20px;
         }
 
-        .login-header {
+        .find-header {
             text-align: center;
             margin-bottom: 32px;
         }
 
-        .login-header h1 {
+        .find-header h1 {
             font-size: 28px;
             color: var(--primary-color);
             margin: 0;
         }
 
-        .login-header p {
+        .find-header p {
             color: #868e96;
             margin-top: 8px;
         }
@@ -103,7 +103,7 @@
             box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
 
-        .login-button {
+        .submit-button {
             width: 100%;
             padding: 16px;
             background-color: var(--primary-color);
@@ -117,38 +117,30 @@
             margin-bottom: 16px;
         }
 
-        .login-button:hover {
+        .submit-button:hover {
             background-color: #ff5252;
         }
 
-        .login-links {
+        .result-message {
             text-align: center;
-            margin-top: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .login-links a {
-            color: #868e96;
-            text-decoration: none;
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 8px;
             font-size: 14px;
-            margin: 0 8px;
-            transition: color 0.3s;
         }
 
-        .login-links a:hover {
-            color: var(--primary-color);
+        .success-message {
+            background-color: #d3f9d8;
+            color: #2b8a3e;
         }
 
         .error-message {
+            background-color: #ffe3e3;
             color: #fa5252;
-            text-align: center;
-            margin-bottom: 16px;
-            font-size: 14px;
         }
 
         @media (max-width: 480px) {
-            .login-container {
+            .find-container {
                 margin: 0;
                 border-radius: 0;
                 box-shadow: none;
@@ -164,51 +156,41 @@
         </div>
     </header>
 
-    <div class="login-container">
-        <div class="login-header">
-            <h1>로그인</h1>
-            <p>반려동물의 건강한 삶을 위한 첫걸음</p>
+    <div class="find-container">
+        <div class="find-header">
+            <h1>아이디 찾기</h1>
+            <p>회원가입 시 입력한 이름과 전화번호를 입력해주세요.</p>
         </div>
 
-        <form action="/member/login" method="post">
-            <c:if test="${not empty param.error}">
+        <form action="/member/find-id" method="post">
+            <c:if test="${not empty errorMessage}">
                 <div class="error-message">
-                    <c:out value="${param.error}" />
+                    <c:out value="${errorMessage}" />
+                </div>
+            </c:if>
+
+            <c:if test="${not empty foundId}">
+                <div class="success-message">
+                    찾은 아이디: <c:out value="${foundId}" />
                 </div>
             </c:if>
 
             <div class="form-group">
-                <label for="loginId">아이디</label>
-                <input type="text" id="loginId" name="loginId" required placeholder="아이디를 입력해주세요">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" required placeholder="이름을 입력해주세요">
             </div>
 
             <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요">
+                <label for="phoneNumber">전화번호</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="전화번호를 입력해주세요">
             </div>
 
-            <button type="submit" class="login-button">로그인</button>
+            <button type="submit" class="submit-button">아이디 찾기</button>
 
-            <div class="login-links">
-                <a href="/member/signup">회원가입</a>
-                <span>|</span>
-                <a href="/member/find-id">아이디 찾기</a>
-                <span>|</span>
-                <a href="/member/find-password">비밀번호 찾기</a>
+            <div style="text-align: center; margin-top: 16px;">
+                <a href="/member/login" style="color: #868e96; text-decoration: none;">로그인으로 돌아가기</a>
             </div>
         </form>
     </div>
-
-    <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const loginId = document.getElementById('loginId').value;
-            const password = document.getElementById('password').value;
-
-            if (!loginId || !password) {
-                e.preventDefault();
-                alert('아이디와 비밀번호를 모두 입력해주세요.');
-            }
-        });
-    </script>
 </body>
 </html>

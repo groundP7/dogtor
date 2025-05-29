@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Dogtor - 로그인</title>
+    <title>Dogtor - 비밀번호 재설정</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -121,30 +121,13 @@
             background-color: #ff5252;
         }
 
-        .login-links {
-            text-align: center;
-            margin-top: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .login-links a {
-            color: #868e96;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 0 8px;
-            transition: color 0.3s;
-        }
-
-        .login-links a:hover {
-            color: var(--primary-color);
-        }
-
         .error-message {
+            background-color: #ffe3e3;
             color: #fa5252;
-            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
             margin-bottom: 16px;
-            font-size: 14px;
+            text-align: center;
         }
 
         @media (max-width: 480px) {
@@ -166,47 +149,95 @@
 
     <div class="login-container">
         <div class="login-header">
-            <h1>로그인</h1>
-            <p>반려동물의 건강한 삶을 위한 첫걸음</p>
+            <h1>비밀번호 재설정</h1>
+            <p class="description">
+                        새로운 비밀번호를 입력해주세요.<br>
+                        비밀번호는 8-20자의 영문, 숫자, 특수문자를 포함해야 합니다.
+                    </p>
         </div>
 
-        <form action="/member/login" method="post">
-            <c:if test="${not empty param.error}">
+        <form action="/member/reset-password" method="post">
+            <input type="hidden" name="loginId" value="${loginId}">
+            <input type="hidden" name="phoneNumber" value="${phoneNumber}">
+            
+            <c:if test="${not empty errorMessage}">
                 <div class="error-message">
-                    <c:out value="${param.error}" />
+                    <c:out value="${errorMessage}" />
                 </div>
             </c:if>
 
             <div class="form-group">
-                <label for="loginId">아이디</label>
-                <input type="text" id="loginId" name="loginId" required placeholder="아이디를 입력해주세요">
+                <label for="newPassword">새 비밀번호</label>
+                <input type="password" id="newPassword" name="newPassword" required 
+                       placeholder="새 비밀번호를 입력해주세요">
             </div>
 
             <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요">
+                <label for="confirmPassword">비밀번호 확인</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required 
+                       placeholder="비밀번호를 다시 입력해주세요">
             </div>
 
-            <button type="submit" class="login-button">로그인</button>
+            <button type="submit" class="login-button">비밀번호 변경</button>
 
-            <div class="login-links">
-                <a href="/member/signup">회원가입</a>
-                <span>|</span>
-                <a href="/member/find-id">아이디 찾기</a>
-                <span>|</span>
-                <a href="/member/find-password">비밀번호 찾기</a>
+            <div style="text-align: center; margin-top: 16px;">
+                <a href="/member/login" style="color: #868e96; text-decoration: none;">로그인으로 돌아가기</a>
             </div>
         </form>
     </div>
 
     <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const loginId = document.getElementById('loginId').value;
-            const password = document.getElementById('password').value;
+        document.querySelector('form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
 
-            if (!loginId || !password) {
-                e.preventDefault();
-                alert('아이디와 비밀번호를 모두 입력해주세요.');
+            if (!newPassword || !confirmPassword) {
+                alert('새 비밀번호와 비밀번호 확인을 모두 입력해주세요.');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('비밀번호가 일치하지 않습니다.');
+                return;
+            }
+
+            if (newPassword.length < 8 || newPassword.length > 20) {
+                alert('비밀번호는 8~20자 사이여야 합니다.');
+                return;
+            }
+
+            if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(newPassword)) {
+                alert('비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.');
+                return;
+            }
+
+            try {
+                const formData = new FormData(this);
+                const response = await fetch('/member/reset-password', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('비밀번호가 성공적으로 변경되었습니다.');
+                    sessionStorage.setItem('passwordResetSuccess', 'true');
+                    window.location.href = '/member/login';
+                } else {
+                    const data = await response.json().catch(() => null);
+                    if (data && data.message) {
+                        alert(data.message);
+                    } else {
+                        alert('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('오류가 발생했습니다. 다시 시도해주세요.');
             }
         });
     </script>

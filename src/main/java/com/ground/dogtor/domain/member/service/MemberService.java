@@ -13,9 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Random;
 
 @Service
 public class MemberService {
+    private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
     @Autowired
     MemberDAO memberDAO;
@@ -74,42 +79,96 @@ public class MemberService {
 
     @Transactional
     public MemberLoginResponse login(MemberLoginRequest memberLoginRequest) {
-        // 1. 입력값 검증
-        if (memberLoginRequest.getLoginId() == null || memberLoginRequest.getLoginId().isEmpty()) {
-            throw new RuntimeException("아이디를 입력하세요.");
+        try {
+            // 1. 입력값 검증
+            if (memberLoginRequest.getLoginId() == null || memberLoginRequest.getLoginId().isEmpty()) {
+                String errorMsg = "아이디를 입력하세요.";
+                logger.error("[로그인 실패] {}", errorMsg);
+                throw new RuntimeException(errorMsg);
+            }
+
+            if (memberLoginRequest.getPassword() == null || memberLoginRequest.getPassword().isEmpty()) {
+                String errorMsg = "비밀번호를 입력하세요.";
+                logger.error("[로그인 실패] {}", errorMsg);
+                throw new RuntimeException(errorMsg);
+            }
+
+            // 2. 회원 조회
+            Member member = memberDAO.findByLoginId(memberLoginRequest);
+            if (member == null) {
+                String errorMsg = "존재하지 않는 아이디입니다.";
+                logger.error("[로그인 실패] {} - 입력된 아이디: {}", errorMsg, memberLoginRequest.getLoginId());
+                throw new RuntimeException(errorMsg);
+            }
+
+            // 3. 비밀번호 확인
+            if (!passwordEncoder.matches(memberLoginRequest.getPassword(), member.getPassword())) {
+                String errorMsg = "비밀번호가 일치하지 않습니다.";
+                logger.error("[로그인 실패] {} - 아이디: {}", errorMsg, memberLoginRequest.getLoginId());
+                throw new IllegalArgumentException(errorMsg);
+            }
+
+            // 4. 토큰 생성
+            String accessToken = jwtConfig.createAccessToken(member.getId());
+            String refreshToken = jwtConfig.createRefreshToken(member.getId());
+
+            // 5. Refresh Token을 DB에 저장
+            memberDAO.updateRefreshToken(member.getId(), refreshToken);
+
+            logger.info("[로그인 성공] 사용자: {}", memberLoginRequest.getLoginId());
+
+            // 6. 응답 데이터 생성 및 반환
+            return MemberLoginResponse.builder()
+                    .memberId(member.getId())
+                    .name(member.getName())
+                    .accessToken(accessToken)
+                    .refreshToken(refreshToken)
+                    .build();
+        } catch (Exception e) {
+            logger.error("[로그인 오류] 메시지: {}", e.getMessage());
+            logger.debug("[로그인 오류] 상세 정보:", e);  // 스택 트레이스는 DEBUG 레벨로 출력
+            throw e;
         }
-
-        if (memberLoginRequest.getPassword() == null || memberLoginRequest.getPassword().isEmpty()) {
-            throw new RuntimeException("비밀번호를 입력하세요.");
-        }
-
-        // 2. 회원 조회
-        Member member = memberDAO.findByLoginId(memberLoginRequest);
-        if (member == null) {
-            throw new RuntimeException("존재하지 않는 아이디입니다.");
-        }
-
-        // 3. 비밀번호 확인
-        if (!passwordEncoder.matches(memberLoginRequest.getPassword(), member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
-
-        // 4. 토큰 생성
-        // Access Token 생성
-        String accessToken = jwtConfig.createAccessToken(member.getId());
-        // Refresh Token 생성
-        String refreshToken = jwtConfig.createRefreshToken(member.getId());
-
-        // 5. Refresh Token을 DB에 저장
-        memberDAO.updateRefreshToken(member.getId(), refreshToken);
-
-        // 6. 응답 데이터 생성 및 반환
-        return MemberLoginResponse.builder()
-                .memberId(member.getId())
-                .name(member.getName())
-                .accessToken(accessToken)
-                .refreshToken(refreshToken)
-                .build();
     }
 
+    public String findId(String name, String phoneNumber) {
+
+        // 입력한 정보를 이용해서 아이디를 찾는다.
+        Member member = memberDAO.findByNameAndPhoneNumber(name, phoneNumber);
+        if (member == null) {
+            throw new RuntimeException("입력하신 정보와 일치하는 회원이 없습니다.");
+        }
+        return member.getLoginId();
+    }
+
+    public boolean verifyUser(String loginId, String phoneNumber) {
+        Member member = memberDAO.findByLoginIdAndPhoneNumber(loginId, phoneNumber);
+        return member != null;
+    }
+
+    @Transactional
+    public void updatePassword(String loginId, String phoneNumber, String newPassword) {
+        // 1. 사용자 확인
+        Member member = memberDAO.findByLoginIdAndPhoneNumber(loginId, phoneNumber);
+        if (member == null) {
+            throw new RuntimeException("입력하신 정보와 일치하는 회원이 없습니다.");
+        }
+
+        // 2. 비밀번호 유효성 검사
+        if (newPassword.length() < 8) {
+            throw new RuntimeException("비밀번호는 8자 이상이어야 합니다.");
+        } else if (newPassword.length() > 20) {
+            throw new RuntimeException("비밀번호는 20자 이하이어야 합니다.");
+        } else if (!PasswordValidator.isValidPassword(newPassword)) {
+            throw new RuntimeException("비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.");
+        }
+
+        // 3. 비밀번호 암호화
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        
+        // 4. DB에 새 비밀번호 저장
+        memberDAO.updatePassword(member.getId(), encodedPassword);
+        
+        logger.info("[비밀번호 변경 성공] 사용자: {}", loginId);
+    }
 }

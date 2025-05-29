@@ -21,6 +21,8 @@ public class MemberDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    private final RowMapper<Member> memberRowMapper = new MemberRowMapper();
+
     public int existsByLoginId(String loginId) {
         try {
             String sql = "SELECT COUNT(*) FROM member WHERE login_id = ?";
@@ -109,6 +111,29 @@ public class MemberDAO {
         } catch (DataAccessException e) {
             throw new RuntimeException("Refresh Token 업데이트 중 오류가 발생했습니다: " + e.getMessage());
         }
+    }
+
+    public Member findByNameAndPhoneNumber(String name, String phoneNumber) {
+        String sql = "SELECT * FROM member WHERE name = ? AND phone_number = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, memberRowMapper, name, phoneNumber);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Member findByLoginIdAndPhoneNumber(String loginId, String phoneNumber) {
+        String sql = "SELECT * FROM member WHERE login_id = ? AND phone_number = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, memberRowMapper, loginId, phoneNumber);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public void updatePassword(Long memberId, String encodedPassword) {
+        String sql = "UPDATE member SET password = ? WHERE id = ?";
+        jdbcTemplate.update(sql, encodedPassword, memberId);
     }
 
     private static class MemberRowMapper implements RowMapper<Member> {

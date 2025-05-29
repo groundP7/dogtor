@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>독터 로그인</title>
+    <title>Dogtor - 비밀번호 찾기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -25,28 +25,53 @@
             min-height: 100vh;
         }
 
-        .container {
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             margin: 20px;
-            background: #fff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
 
-        .logo-section {
+        .login-header {
             text-align: center;
             margin-bottom: 32px;
         }
 
-        .logo-section h1 {
+        .login-header h1 {
             font-size: 28px;
             color: var(--primary-color);
             margin: 0;
         }
 
-        .logo-section p {
+        .login-header p {
             color: #868e96;
             margin-top: 8px;
         }
@@ -55,33 +80,30 @@
             margin-bottom: 24px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-color);
             font-size: 14px;
+            font-weight: 500;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        .form-group input {
             width: 100%;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             box-sizing: border-box;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
+        .form-group input:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
 
-        .submit-btn {
+        .login-button {
             width: 100%;
             padding: 16px;
             background-color: var(--primary-color);
@@ -91,53 +113,25 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
             margin-bottom: 16px;
         }
 
-        .submit-btn:hover {
+        .login-button:hover {
             background-color: #ff5252;
         }
 
-        .links {
-            text-align: center;
-            margin-top: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .links a {
-            color: #868e96;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 0 8px;
-            transition: color 0.3s ease;
-        }
-
-        .links a:hover {
-            color: var(--primary-color);
-        }
-
         .error-message {
+            background-color: #ffe3e3;
             color: #fa5252;
-            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
             margin-bottom: 16px;
-            font-size: 14px;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .remember-me input[type="checkbox"] {
-            margin-right: 8px;
-            accent-color: var(--primary-color);
+            text-align: center;
         }
 
         @media (max-width: 480px) {
-            .container {
+            .login-container {
                 margin: 0;
                 border-radius: 0;
                 box-shadow: none;
@@ -147,54 +141,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="logo-section">
-            <h1>🐾 Dogtor</h1>
-            <p>반려동물의 건강한 삶을 위한 첫걸음</p>
+    <header class="header">
+        <div class="top-header">
+            <a href="/" class="logo">🐾 Dogtor</a>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h1>비밀번호 찾기</h1>
+            <p>회원가입 시 입력한 아이디와 전화번호를 입력해주세요.</p>
         </div>
 
-        <form action="/member/login" method="post" id="loginForm">
-            <c:if test="${param.error != null}">
+        <form action="/member/find-password" method="post">
+            <c:if test="${not empty errorMessage}">
                 <div class="error-message">
-                    ${param.error}
+                    <c:out value="${errorMessage}" />
                 </div>
             </c:if>
 
             <div class="form-group">
                 <label for="loginId">아이디</label>
-                <input type="text" id="loginId" name="loginId" required placeholder="아이디를 입력해주세요"/>
+                <input type="text" id="loginId" name="loginId" required placeholder="아이디를 입력해주세요">
             </div>
 
             <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요"/>
+                <label for="phoneNumber">전화번호</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="전화번호를 입력해주세요">
             </div>
 
-            <div class="remember-me">
-                <input type="checkbox" id="remember" name="remember"/>
-                <label for="remember">로그인 상태 유지</label>
-            </div>
+            <button type="submit" class="login-button">다음</button>
 
-            <button type="submit" class="submit-btn">로그인</button>
-
-            <div class="links">
-                <a href="/member/signup">회원가입</a>
-                <span>|</span>
-                <a href="/member/find-id">아이디 찾기</a>
-                <span>|</span>
-                <a href="/member/find-password">비밀번호 찾기</a>
+            <div style="text-align: center; margin-top: 16px;">
+                <a href="/member/login" style="color: #868e96; text-decoration: none;">로그인으로 돌아가기</a>
             </div>
         </form>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.querySelector('form').addEventListener('submit', function(e) {
             const loginId = document.getElementById('loginId').value;
-            const password = document.getElementById('password').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
 
-            if (!loginId || !password) {
+            if (!loginId || !phoneNumber) {
                 e.preventDefault();
-                alert('아이디와 비밀번호를 모두 입력해주세요.');
+                alert('아이디와 전화번호를 모두 입력해주세요.');
             }
         });
     </script>

@@ -1,0 +1,626 @@
+2025-05-29T20:39:51.302+09:00  INFO 6768 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 6768 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T20:39:51.305+09:00 DEBUG 6768 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T20:39:51.306+09:00  INFO 6768 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T20:39:52.406+09:00  INFO 6768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T20:39:52.440+09:00  INFO 6768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 JDBC repository interfaces.
+2025-05-29T20:39:53.097+09:00  INFO 6768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T20:39:53.112+09:00  INFO 6768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T20:39:53.112+09:00  INFO 6768 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T20:39:53.365+09:00  INFO 6768 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T20:39:53.375+09:00  INFO 6768 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T20:39:53.376+09:00  INFO 6768 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2007 ms
+2025-05-29T20:39:53.681+09:00  WARN 6768 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 1bc467ab-2eaa-4008-b3c0-698481120436
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T20:39:53.690+09:00  INFO 6768 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T20:39:53.826+09:00  INFO 6768 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T20:39:54.080+09:00  INFO 6768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T20:39:54.453+09:00  INFO 6768 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2807cf3
+2025-05-29T20:39:54.455+09:00  INFO 6768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T20:39:54.727+09:00  INFO 6768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T20:39:54.736+09:00  INFO 6768 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.17 seconds (process running for 4.68)
+2025-05-29T20:40:13.227+09:00  INFO 6768 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T20:40:13.227+09:00  INFO 6768 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T20:40:13.229+09:00  INFO 6768 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T20:40:13.367+09:00 ERROR 6768 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [로그인 실패] 존재하지 않는 아이디입니다. - 입력된 아이디: fadasd
+2025-05-29T20:40:13.368+09:00 ERROR 6768 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [로그인 오류] 메시지: 존재하지 않는 아이디입니다.
+2025-05-29T20:40:13.368+09:00 DEBUG 6768 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [로그인 오류] 상세 정보:
+
+java.lang.RuntimeException: 존재하지 않는 아이디입니다.
+	at com.ground.dogtor.domain.member.service.MemberService.login(MemberService.java:99) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.7.jar:6.2.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.7.jar:6.2.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.7.jar:6.2.7]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.7.jar:6.2.7]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.7.jar:6.2.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.7.jar:6.2.7]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.7.jar:6.2.7]
+	at com.ground.dogtor.domain.member.service.MemberService$$SpringCGLIB$$0.login(<generated>) ~[main/:na]
+	at com.ground.dogtor.domain.member.controller.MemberController.login(MemberController.java:42) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.41.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.41.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.0.jar:6.5.0]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.7.jar:6.2.7]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T21:49:47.403+09:00  INFO 18212 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 18212 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T21:49:47.405+09:00 DEBUG 18212 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T21:49:47.406+09:00  INFO 18212 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T21:49:48.149+09:00  INFO 18212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T21:49:48.177+09:00  INFO 18212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-05-29T21:49:48.778+09:00  INFO 18212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T21:49:48.794+09:00  INFO 18212 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T21:49:48.794+09:00  INFO 18212 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T21:49:49.103+09:00  INFO 18212 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T21:49:49.116+09:00  INFO 18212 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T21:49:49.117+09:00  INFO 18212 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1648 ms
+2025-05-29T21:49:49.683+09:00  WARN 18212 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 796e8b1a-4bb7-43a9-86d4-cef7365ccd6a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T21:49:49.694+09:00  INFO 18212 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T21:49:49.855+09:00  INFO 18212 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T21:49:50.134+09:00  INFO 18212 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T21:49:50.608+09:00  INFO 18212 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@57b1ec84
+2025-05-29T21:49:50.612+09:00  INFO 18212 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T21:49:50.923+09:00  INFO 18212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T21:49:50.933+09:00  INFO 18212 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.191 seconds (process running for 4.583)
+2025-05-29T21:49:52.056+09:00  INFO 18212 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T21:49:52.056+09:00  INFO 18212 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T21:49:52.057+09:00  INFO 18212 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T21:53:21.221+09:00  INFO 20344 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 20344 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T21:53:21.223+09:00 DEBUG 20344 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T21:53:21.224+09:00  INFO 20344 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T21:53:22.137+09:00  INFO 20344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T21:53:22.180+09:00  INFO 20344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-05-29T21:53:22.924+09:00  INFO 20344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T21:53:22.943+09:00  INFO 20344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T21:53:22.944+09:00  INFO 20344 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T21:53:23.215+09:00  INFO 20344 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T21:53:23.223+09:00  INFO 20344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T21:53:23.224+09:00  INFO 20344 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1931 ms
+2025-05-29T21:53:23.592+09:00  WARN 20344 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 104f381f-fbbb-41cb-b9f5-c65028ab2455
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T21:53:23.602+09:00  INFO 20344 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T21:53:23.747+09:00  INFO 20344 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T21:53:24.026+09:00  INFO 20344 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T21:53:24.390+09:00  INFO 20344 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@280ecc33
+2025-05-29T21:53:24.392+09:00  INFO 20344 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T21:53:24.718+09:00  INFO 20344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T21:53:24.726+09:00  INFO 20344 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.192 seconds (process running for 4.784)
+2025-05-29T21:56:30.526+09:00  INFO 20344 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T21:56:30.526+09:00  INFO 20344 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T21:56:30.527+09:00  INFO 20344 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T21:56:38.804+09:00  INFO 20344 --- [http-nio-8080-exec-2] c.g.d.d.member.service.MemberService     : 임시 비밀번호 생성 완료: Gm^6r3Vr
+2025-05-29T21:59:20.499+09:00  INFO 7032 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 7032 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T21:59:20.501+09:00 DEBUG 7032 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T21:59:20.502+09:00  INFO 7032 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T21:59:21.379+09:00  INFO 7032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T21:59:21.437+09:00  INFO 7032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 0 JDBC repository interfaces.
+2025-05-29T21:59:22.139+09:00  INFO 7032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T21:59:22.159+09:00  INFO 7032 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T21:59:22.159+09:00  INFO 7032 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T21:59:22.433+09:00  INFO 7032 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T21:59:22.443+09:00  INFO 7032 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T21:59:22.443+09:00  INFO 7032 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1869 ms
+2025-05-29T21:59:22.770+09:00  WARN 7032 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 76cbcddb-4d50-45d3-a47a-a132b2a9082d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T21:59:22.781+09:00  INFO 7032 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T21:59:22.939+09:00  INFO 7032 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T21:59:23.282+09:00  INFO 7032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T21:59:23.659+09:00  INFO 7032 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@280ecc33
+2025-05-29T21:59:23.662+09:00  INFO 7032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T21:59:23.971+09:00  INFO 7032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T21:59:23.980+09:00  INFO 7032 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.186 seconds (process running for 4.611)
+2025-05-29T21:59:39.331+09:00  INFO 7032 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T21:59:39.331+09:00  INFO 7032 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T21:59:39.332+09:00  INFO 7032 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:01:39.007+09:00  INFO 10084 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 10084 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:01:39.010+09:00 DEBUG 10084 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:01:39.011+09:00  INFO 10084 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:01:40.066+09:00  INFO 10084 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:01:40.102+09:00  INFO 10084 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:01:40.785+09:00  INFO 10084 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:01:40.800+09:00  INFO 10084 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:01:40.801+09:00  INFO 10084 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:01:41.078+09:00  INFO 10084 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:01:41.096+09:00  INFO 10084 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:01:41.097+09:00  INFO 10084 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1990 ms
+2025-05-29T22:01:41.452+09:00  WARN 10084 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 974808a0-5120-4d03-9a89-b1ddcc78cd4e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:01:41.460+09:00  INFO 10084 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:01:41.599+09:00  INFO 10084 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:01:41.880+09:00  INFO 10084 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:01:42.240+09:00  INFO 10084 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@645ba24a
+2025-05-29T22:01:42.242+09:00  INFO 10084 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:01:42.510+09:00  INFO 10084 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:01:42.517+09:00  INFO 10084 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.253 seconds (process running for 4.791)
+2025-05-29T22:02:24.457+09:00  INFO 10084 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:02:24.458+09:00  INFO 10084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:02:24.459+09:00  INFO 10084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-29T22:03:32.446+09:00  INFO 12560 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 12560 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:03:32.448+09:00 DEBUG 12560 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:03:32.449+09:00  INFO 12560 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:03:33.598+09:00  INFO 12560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:03:33.633+09:00  INFO 12560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:03:34.322+09:00  INFO 12560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:03:34.339+09:00  INFO 12560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:03:34.340+09:00  INFO 12560 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:03:34.629+09:00  INFO 12560 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:03:34.638+09:00  INFO 12560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:03:34.638+09:00  INFO 12560 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2114 ms
+2025-05-29T22:03:34.977+09:00  WARN 12560 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2f179c77-6027-4c72-ad00-5523bb472bda
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:03:34.984+09:00  INFO 12560 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:03:35.131+09:00  INFO 12560 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:03:35.557+09:00  INFO 12560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:03:35.947+09:00  INFO 12560 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@280ecc33
+2025-05-29T22:03:35.949+09:00  INFO 12560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:03:36.292+09:00  INFO 12560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:03:36.304+09:00  INFO 12560 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.541 seconds (process running for 5.074)
+2025-05-29T22:08:14.348+09:00  INFO 19592 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 19592 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:08:14.350+09:00 DEBUG 19592 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:08:14.351+09:00  INFO 19592 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:08:15.259+09:00  INFO 19592 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:08:15.287+09:00  INFO 19592 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:08:16.052+09:00  INFO 19592 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:08:16.070+09:00  INFO 19592 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:08:16.070+09:00  INFO 19592 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:08:16.419+09:00  INFO 19592 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:08:16.428+09:00  INFO 19592 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:08:16.428+09:00  INFO 19592 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1959 ms
+2025-05-29T22:08:16.776+09:00  WARN 19592 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5b926076-12bd-456f-adcd-a32cb1f0e282
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:08:16.786+09:00  INFO 19592 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:08:16.926+09:00  INFO 19592 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:08:17.239+09:00  INFO 19592 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:08:17.618+09:00  INFO 19592 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@536da29c
+2025-05-29T22:08:17.620+09:00  INFO 19592 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:08:17.894+09:00  INFO 19592 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:08:17.902+09:00  INFO 19592 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.219 seconds (process running for 4.728)
+2025-05-29T22:08:43.885+09:00  INFO 19592 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:08:43.885+09:00  INFO 19592 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:08:43.886+09:00  INFO 19592 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:09:16.905+09:00  INFO 15340 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 15340 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:09:16.907+09:00 DEBUG 15340 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:09:16.907+09:00  INFO 15340 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:09:17.756+09:00  INFO 15340 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:09:17.790+09:00  INFO 15340 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:09:18.414+09:00  INFO 15340 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:09:18.436+09:00  INFO 15340 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:09:18.437+09:00  INFO 15340 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:09:18.702+09:00  INFO 15340 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:09:18.713+09:00  INFO 15340 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:09:18.713+09:00  INFO 15340 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1745 ms
+2025-05-29T22:09:19.118+09:00  WARN 15340 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 00914ab2-e273-49ac-9b2a-78d847641fd3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:09:19.127+09:00  INFO 15340 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:09:19.273+09:00  INFO 15340 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:09:19.655+09:00  INFO 15340 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:09:20.078+09:00  INFO 15340 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@536da29c
+2025-05-29T22:09:20.080+09:00  INFO 15340 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:09:20.365+09:00  INFO 15340 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:09:20.372+09:00  INFO 15340 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.168 seconds (process running for 4.718)
+2025-05-29T22:11:03.967+09:00  INFO 6548 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 6548 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:11:03.969+09:00 DEBUG 6548 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:11:03.970+09:00  INFO 6548 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:11:04.910+09:00  INFO 6548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:11:04.941+09:00  INFO 6548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:11:05.708+09:00  INFO 6548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:11:05.727+09:00  INFO 6548 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:11:05.727+09:00  INFO 6548 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:11:05.984+09:00  INFO 6548 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:11:05.994+09:00  INFO 6548 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:11:05.995+09:00  INFO 6548 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1964 ms
+2025-05-29T22:11:06.366+09:00  WARN 6548 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 79bbda32-802e-4f24-a35d-4455f5b3ecd1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:11:06.375+09:00  INFO 6548 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:11:06.515+09:00  INFO 6548 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:11:06.774+09:00  INFO 6548 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:11:07.126+09:00  INFO 6548 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@57b1ec84
+2025-05-29T22:11:07.128+09:00  INFO 6548 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:11:07.370+09:00  INFO 6548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:11:07.379+09:00  INFO 6548 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.081 seconds (process running for 4.49)
+2025-05-29T22:12:56.823+09:00  INFO 6548 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:12:56.823+09:00  INFO 6548 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:12:56.825+09:00  INFO 6548 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:13:20.960+09:00  INFO 6548 --- [http-nio-8080-exec-3] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:13:20.969+09:00  WARN 6548 --- [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:15:46.549+09:00  INFO 18692 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 18692 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:15:46.552+09:00 DEBUG 18692 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:15:46.553+09:00  INFO 18692 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:15:47.327+09:00  INFO 18692 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:15:47.357+09:00  INFO 18692 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:15:47.952+09:00  INFO 18692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:15:47.966+09:00  INFO 18692 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:15:47.967+09:00  INFO 18692 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:15:48.211+09:00  INFO 18692 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:15:48.221+09:00  INFO 18692 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:15:48.221+09:00  INFO 18692 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1598 ms
+2025-05-29T22:15:48.551+09:00  WARN 18692 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 58229299-4f32-434e-95f5-137a272ec0e6
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:15:48.558+09:00  INFO 18692 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:15:48.694+09:00  INFO 18692 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:15:48.954+09:00  INFO 18692 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:15:49.314+09:00  INFO 18692 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70cf7d1e
+2025-05-29T22:15:49.316+09:00  INFO 18692 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:15:49.579+09:00  INFO 18692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:15:49.587+09:00  INFO 18692 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 3.722 seconds (process running for 4.183)
+2025-05-29T22:16:04.092+09:00  INFO 18692 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:16:04.093+09:00  INFO 18692 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:16:04.094+09:00  INFO 18692 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:16:19.459+09:00  INFO 18692 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:16:19.470+09:00  WARN 18692 --- [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:16:21.782+09:00  INFO 18692 --- [http-nio-8080-exec-3] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:16:21.788+09:00  WARN 18692 --- [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:16:36.722+09:00  INFO 18692 --- [http-nio-8080-exec-2] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:16:36.733+09:00  WARN 18692 --- [http-nio-8080-exec-2] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:17:53.969+09:00  INFO 20752 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 20752 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:17:53.977+09:00 DEBUG 20752 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:17:53.978+09:00  INFO 20752 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:17:54.900+09:00  INFO 20752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:17:54.934+09:00  INFO 20752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:17:55.643+09:00  INFO 20752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:17:55.660+09:00  INFO 20752 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:17:55.661+09:00  INFO 20752 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:17:55.920+09:00  INFO 20752 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:17:55.930+09:00  INFO 20752 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:17:55.930+09:00  INFO 20752 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1866 ms
+2025-05-29T22:17:56.297+09:00  WARN 20752 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: ecc6a6c0-2c8e-4bbe-a480-66f6ffe04032
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:17:56.306+09:00  INFO 20752 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:17:56.456+09:00  INFO 20752 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:17:56.933+09:00  INFO 20752 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:17:57.543+09:00  INFO 20752 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70cf7d1e
+2025-05-29T22:17:57.546+09:00  INFO 20752 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:17:57.882+09:00  INFO 20752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:17:57.895+09:00  INFO 20752 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 4.756 seconds (process running for 5.468)
+2025-05-29T22:18:05.564+09:00  INFO 20752 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:18:05.564+09:00  INFO 20752 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:18:05.565+09:00  INFO 20752 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:18:05.809+09:00  INFO 20752 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:18:05.826+09:00  WARN 20752 --- [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:18:19.098+09:00  INFO 14376 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 14376 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:18:19.101+09:00 DEBUG 14376 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:18:19.101+09:00  INFO 14376 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:18:19.863+09:00  INFO 14376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:18:19.893+09:00  INFO 14376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:18:20.554+09:00  INFO 14376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:18:20.572+09:00  INFO 14376 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:18:20.572+09:00  INFO 14376 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:18:20.820+09:00  INFO 14376 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:18:20.829+09:00  INFO 14376 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:18:20.830+09:00  INFO 14376 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1668 ms
+2025-05-29T22:18:21.142+09:00  WARN 14376 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 98f0d84a-3333-4b51-b1fd-851d62d029e1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:18:21.154+09:00  INFO 14376 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:18:21.293+09:00  INFO 14376 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:18:21.582+09:00  INFO 14376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:18:21.951+09:00  INFO 14376 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70cf7d1e
+2025-05-29T22:18:21.953+09:00  INFO 14376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:18:22.218+09:00  INFO 14376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:18:22.226+09:00  INFO 14376 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 3.763 seconds (process running for 4.181)
+2025-05-29T22:18:27.971+09:00  INFO 14376 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:18:27.971+09:00  INFO 14376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:18:27.972+09:00  INFO 14376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:18:28.182+09:00  INFO 14376 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:18:28.210+09:00  WARN 14376 --- [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : The HTTP response header [Location] with value [http://localhost:8080/member/login?message=비밀번호가 성공적으로 변경되었습니다.] has been removed from the response because it is invalid
+
+java.lang.IllegalArgumentException: The Unicode character [비] at code point [48,708] cannot be encoded as it is outside the permitted range of 0 to 255
+	at org.apache.tomcat.util.buf.MessageBytes.toBytesSimple(MessageBytes.java:310) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.buf.MessageBytes.toBytes(MessageBytes.java:283) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.write(Http11OutputBuffer.java:400) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11OutputBuffer.sendHeader(Http11OutputBuffer.java:379) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.writeHeaders(Http11Processor.java:1067) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.prepareResponse(Http11Processor.java:1054) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:377) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.action(Response.java:208) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.Response.commit(Response.java:461) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:286) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:246) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.Response.finishResponse(Response.java:423) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:373) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.41.jar:10.1.41]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-05-29T22:19:41.533+09:00  INFO 16680 --- [main] com.ground.dogtor.DogtorApplication      : Starting DogtorApplication using Java 23.0.2 with PID 16680 (C:\Users\i5 9400f\Documents\GitHub\dogtor\build\classes\java\main started by i5 9400f in C:\Users\i5 9400f\Documents\GitHub\dogtor)
+2025-05-29T22:19:41.539+09:00 DEBUG 16680 --- [main] com.ground.dogtor.DogtorApplication      : Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-05-29T22:19:41.541+09:00  INFO 16680 --- [main] com.ground.dogtor.DogtorApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-05-29T22:19:42.430+09:00  INFO 16680 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-29T22:19:42.459+09:00  INFO 16680 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2025-05-29T22:19:43.077+09:00  INFO 16680 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-29T22:19:43.094+09:00  INFO 16680 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-29T22:19:43.094+09:00  INFO 16680 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-05-29T22:19:43.361+09:00  INFO 16680 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-29T22:19:43.373+09:00  INFO 16680 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-29T22:19:43.374+09:00  INFO 16680 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1740 ms
+2025-05-29T22:19:43.710+09:00  WARN 16680 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: ad6f316d-df69-47e9-b42e-53b512d0a70b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-29T22:19:43.719+09:00  INFO 16680 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-05-29T22:19:43.865+09:00  INFO 16680 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-29T22:19:44.133+09:00  INFO 16680 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-29T22:19:44.487+09:00  INFO 16680 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@280ecc33
+2025-05-29T22:19:44.489+09:00  INFO 16680 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-29T22:19:44.754+09:00  INFO 16680 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-29T22:19:44.762+09:00  INFO 16680 --- [main] com.ground.dogtor.DogtorApplication      : Started DogtorApplication in 3.907 seconds (process running for 4.312)
+2025-05-29T22:19:48.539+09:00  INFO 16680 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-29T22:19:48.540+09:00  INFO 16680 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-29T22:19:48.541+09:00  INFO 16680 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-29T22:19:48.775+09:00  INFO 16680 --- [http-nio-8080-exec-1] c.g.d.d.member.service.MemberService     : [비밀번호 변경 성공] 사용자: qkrwltkd
+2025-05-29T22:19:57.665+09:00  INFO 16680 --- [http-nio-8080-exec-3] c.g.d.d.member.service.MemberService     : [로그인 성공] 사용자: qkrwltkd

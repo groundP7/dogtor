@@ -11,9 +11,19 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/
-  logging:
-    level:
-      org.springframework.web: DEBUG
+
+# logging 설정을 spring 하위에서 최상위 레벨로 이동
+logging:
+  level:
+    root: INFO
+    com.ground.dogtor: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+  charset:
+    console: UTF-8
+    file: UTF-8
 
 jwt:
   secret: "dogtorSecretKey123!@#dogtorSecretKey123!@#dogtorSecretKey123!@#"  # 최소 32바이트 이상의 길이를 가진 키
