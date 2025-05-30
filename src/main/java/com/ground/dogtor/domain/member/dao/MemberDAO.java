@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class MemberDAO {
@@ -134,6 +136,72 @@ public class MemberDAO {
     public void updatePassword(Long memberId, String encodedPassword) {
         String sql = "UPDATE member SET password = ? WHERE id = ?";
         jdbcTemplate.update(sql, encodedPassword, memberId);
+    }
+
+    public Member findById(Long memberId) {
+        try {
+            String sql = "SELECT * FROM member WHERE id = ?";
+            return jdbcTemplate.queryForObject(sql, memberRowMapper, memberId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        } catch (DataAccessException e) {
+            throw new RuntimeException("회원 조회 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    public void updateProfile(Long memberId, String name, String phoneNumber, String encodedPassword) {
+        try {
+            StringBuilder sql = new StringBuilder("UPDATE member SET name = ?, phone_number = ?");
+            
+            if (encodedPassword != null) {
+                sql.append(", password = ?");
+            }
+            
+            sql.append(" WHERE id = ?");
+
+            if (encodedPassword != null) {
+                jdbcTemplate.update(sql.toString(), name, phoneNumber, encodedPassword, memberId);
+            } else {
+                jdbcTemplate.update(sql.toString(), name, phoneNumber, memberId);
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException("회원 정보 수정 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    public Map<String, String> findAddressByMemberId(Long memberId) {
+        try {
+            String sql = "SELECT postal_code, address, detail_address FROM member_address WHERE member_id = ? AND is_default = true";
+            return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+                Map<String, String> address = new HashMap<>();
+                address.put("postalCode", rs.getString("postal_code"));
+                address.put("address", rs.getString("address"));
+                address.put("detailAddress", rs.getString("detail_address"));
+                return address;
+            }, memberId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        } catch (DataAccessException e) {
+            throw new RuntimeException("주소 조회 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    public void updateAddress(Long memberId, String postalCode, String address, String detailAddress) {
+        try {
+            String sql = "UPDATE member_address SET postal_code = ?, address = ?, detail_address = ? " +
+                        "WHERE member_id = ? AND is_default = true";
+            
+            int updatedRows = jdbcTemplate.update(sql, postalCode, address, detailAddress, memberId);
+            
+            if (updatedRows == 0) {
+                // 기본 주소가 없는 경우 새로 추가
+                sql = "INSERT INTO member_address (member_id, postal_code, address, detail_address, is_default) " +
+                      "VALUES (?, ?, ?, ?, true)";
+                jdbcTemplate.update(sql, memberId, postalCode, address, detailAddress);
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException("주소 수정 중 오류가 발생했습니다: " + e.getMessage());
+        }
     }
 
     private static class MemberRowMapper implements RowMapper<Member> {

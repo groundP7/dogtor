@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Random;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -170,5 +171,54 @@ public class MemberService {
         memberDAO.updatePassword(member.getId(), encodedPassword);
         
         logger.info("[비밀번호 변경 성공] 사용자: {}", loginId);
+    }
+
+    public Member getMemberById(Long memberId) {
+        Member member = memberDAO.findById(memberId);
+        if (member == null) {
+            throw new RuntimeException("회원을 찾을 수 없습니다.");
+        }
+        return member;
+    }
+
+    public Map<String, String> getMemberAddress(Long memberId) {
+        return memberDAO.findAddressByMemberId(memberId);
+    }
+
+    @Transactional
+    public void updateProfile(Long memberId, String currentPassword, String newPassword, 
+                            String name, String phoneNumber, String postalCode, 
+                            String address, String detailAddress) {
+        // 1. 회원 조회
+        Member member = memberDAO.findById(memberId);
+        if (member == null) {
+            throw new RuntimeException("회원을 찾을 수 없습니다.");
+        }
+
+        // 2. 현재 비밀번호 확인
+        if (!passwordEncoder.matches(currentPassword, member.getPassword())) {
+            throw new RuntimeException("현재 비밀번호가 일치하지 않습니다.");
+        }
+
+        // 3. 새 비밀번호가 있는 경우 유효성 검사
+        String encodedPassword = null;
+        if (newPassword != null && !newPassword.isEmpty()) {
+            if (newPassword.length() < 8) {
+                throw new RuntimeException("새 비밀번호는 8자 이상이어야 합니다.");
+            } else if (newPassword.length() > 20) {
+                throw new RuntimeException("새 비밀번호는 20자 이하이어야 합니다.");
+            } else if (!PasswordValidator.isValidPassword(newPassword)) {
+                throw new RuntimeException("새 비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.");
+            }
+            encodedPassword = passwordEncoder.encode(newPassword);
+        }
+
+        // 4. 회원 정보 업데이트
+        memberDAO.updateProfile(memberId, name, phoneNumber, encodedPassword);
+        
+        // 5. 주소 정보 업데이트
+        memberDAO.updateAddress(memberId, postalCode, address, detailAddress);
+        
+        logger.info("[회원 정보 수정 성공] 회원 ID: {}", memberId);
     }
 }

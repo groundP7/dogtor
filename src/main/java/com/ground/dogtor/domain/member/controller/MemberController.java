@@ -3,6 +3,7 @@ package com.ground.dogtor.domain.member.controller;
 import com.ground.dogtor.domain.member.dto.MemberLoginRequest;
 import com.ground.dogtor.domain.member.dto.MemberLoginResponse;
 import com.ground.dogtor.domain.member.dto.MemberSignUpRequest;
+import com.ground.dogtor.domain.member.entity.Member;
 import com.ground.dogtor.domain.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -147,6 +151,61 @@ public class MemberController {
             model.addAttribute("loginId", loginId);
             model.addAttribute("phoneNumber", phoneNumber);
             return "resetPassword";
+        }
+    }
+
+    @GetMapping("/my-profile")
+    public String myProfile(HttpSession session, Model model) {
+        Long memberId = (Long) session.getAttribute("memberId");
+        if (memberId == null) {
+            return "redirect:/member/login";
+        }
+        
+        try {
+            Member member = memberService.getMemberById(memberId);
+            Map<String, String> address = memberService.getMemberAddress(memberId);
+            
+            model.addAttribute("member", member);
+            model.addAttribute("memberAddress", address);
+            return "myPage";
+        } catch (Exception e) {
+            return "redirect:/member/login";
+        }
+    }
+
+    @PostMapping("/update-profile")
+    public String updateProfile(
+            @RequestParam String currentPassword,
+            @RequestParam(required = false) String newPassword,
+            @RequestParam String name,
+            @RequestParam String phoneNumber,
+            @RequestParam String postalCode,
+            @RequestParam String address,
+            @RequestParam String detailAddress,
+            HttpSession session,
+            HttpServletResponse response) throws IOException {
+        
+        Long memberId = (Long) session.getAttribute("memberId");
+        if (memberId == null) {
+            response.setContentType("application/json");
+            response.getWriter().write("{\"success\": false, \"message\": \"로그인이 필요합니다.\"}");
+            return null;
+        }
+
+        try {
+            memberService.updateProfile(memberId, currentPassword, newPassword, name, phoneNumber,
+                                     postalCode, address, detailAddress);
+            session.setAttribute("memberName", name); // 세션의 이름 업데이트
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"success\": true}");
+            return null;
+        } catch (Exception e) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+            return null;
         }
     }
 }

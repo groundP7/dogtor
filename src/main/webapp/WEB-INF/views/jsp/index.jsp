@@ -169,7 +169,7 @@
                     <c:when test="${not empty sessionScope.memberId}">
                         <a href="/shop">핫딜</a>
                         <a href="/member/cart">장바구니</a>
-                        <a href="/member/profile">${sessionScope.memberName}님</a>
+                        <a href="/member/my-profile">${sessionScope.memberName}님</a>
                         <a href="/member/logout">로그아웃</a>
                     </c:when>
                     <c:otherwise>
