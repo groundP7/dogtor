@@ -221,4 +221,26 @@ public class MemberService {
         
         logger.info("[회원 정보 수정 성공] 회원 ID: {}", memberId);
     }
+
+    @Transactional
+    public void deleteAccount(Long memberId, String password) {
+        // 1. 회원 조회
+        Member member = memberDAO.findById(memberId);
+        if (member == null) {
+            throw new RuntimeException("회원을 찾을 수 없습니다.");
+        }
+
+        // 2. 비밀번호 확인
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 3. 회원 주소 삭제
+        memberDAO.deleteAddressByMemberId(memberId);
+
+        // 4. 회원 삭제
+        memberDAO.deleteMember(memberId);
+        
+        logger.info("[회원 탈퇴 성공] 회원 ID: {}", memberId);
+    }
 }

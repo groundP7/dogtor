@@ -144,6 +144,69 @@
             text-align: center;
         }
 
+        .delete-button {
+            width: 100%;
+            padding: 16px;
+            background-color: #e03131;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-button:hover {
+            background-color: #c92a2a;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .delete-confirm-button {
+            flex: 1;
+            padding: 12px;
+            background-color: #e03131;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .cancel-button {
+            flex: 1;
+            padding: 12px;
+            background-color: #868e96;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
         @media (max-width: 480px) {
             .profile-container {
                 margin: 0;
@@ -230,6 +293,24 @@
 
             <button type="submit" class="save-button">정보 수정</button>
         </form>
+
+        <button onclick="showDeleteAccountModal()" class="delete-button">회원 탈퇴</button>
+
+        <!-- 회원탈퇴 모달 -->
+        <div id="deleteAccountModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>회원 탈퇴</h2>
+                <p>정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.</p>
+                <div class="form-group">
+                    <label for="deletePassword">비밀번호 확인</label>
+                    <input type="password" id="deletePassword" placeholder="비밀번호를 입력해주세요">
+                </div>
+                <div class="modal-buttons">
+                    <button onclick="deleteAccount()" class="delete-confirm-button">탈퇴하기</button>
+                    <button onclick="hideDeleteAccountModal()" class="cancel-button">취소</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -285,7 +366,10 @@
                 const formData = new FormData(this);
                 const response = await fetch('/member/update-profile', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
 
                 if (response.ok) {
@@ -305,6 +389,49 @@
                 alert('오류가 발생했습니다. 다시 시도해주세요.');
             }
         });
+
+        function showDeleteAccountModal() {
+            document.getElementById('deleteAccountModal').style.display = 'block';
+        }
+
+        function hideDeleteAccountModal() {
+            document.getElementById('deleteAccountModal').style.display = 'none';
+        }
+
+        async function deleteAccount() {
+            const password = document.getElementById('deletePassword').value;
+            
+            if (!password) {
+                alert('비밀번호를 입력해주세요.');
+                return;
+            }
+
+            if (!confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/member/delete-account', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ password: password })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('회원 탈퇴가 완료되었습니다.');
+                    window.location.href = '/';
+                } else {
+                    alert(result.message || '회원 탈퇴에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        }
     </script>
 </body>
 </html> 

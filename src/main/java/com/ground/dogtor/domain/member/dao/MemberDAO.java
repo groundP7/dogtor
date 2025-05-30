@@ -204,6 +204,28 @@ public class MemberDAO {
         }
     }
 
+    public void deleteAddressByMemberId(Long memberId) {
+        try {
+            String sql = "DELETE FROM member_address WHERE member_id = ?";
+            jdbcTemplate.update(sql, memberId);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("회원 주소 삭제 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+    public void deleteMember(Long memberId) {
+        try {
+            String sql = "DELETE FROM member WHERE id = ?";
+            int updatedRows = jdbcTemplate.update(sql, memberId);
+            
+            if (updatedRows != 1) {
+                throw new RuntimeException("회원 삭제에 실패했습니다.");
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException("회원 삭제 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
     private static class MemberRowMapper implements RowMapper<Member> {
         @Override
         public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
