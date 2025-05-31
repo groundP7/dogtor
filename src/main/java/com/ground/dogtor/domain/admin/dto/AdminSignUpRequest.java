@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminSignUpRequest {
-    private String AdminLoginId;
+    private String adminLoginId;
     private String name;
     private String password;
     private String phoneNumber;

@@ -144,8 +144,8 @@
 
         <form id="loginForm" method="POST" action="/admin/login">
             <div class="form-group">
-                <label for="loginId">아이디</label>
-                <input type="text" id="loginId" name="loginId" required>
+                <label for="adminLoginId">아이디</label>
+                <input type="text" id="adminLoginId" name="adminLoginId" required>
             </div>
 
             <div class="form-group">
