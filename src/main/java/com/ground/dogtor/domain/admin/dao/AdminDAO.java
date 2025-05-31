@@ -23,7 +23,7 @@ public class AdminDAO {
 
     public boolean existsByLoginId(String loginId) {
         try {
-            String sql = "SELECT COUNT(*) FROM admin WHERE login_id = ?";
+            String sql = "SELECT COUNT(*) FROM admin WHERE admin_login_id = ?";
             int count = jdbcTemplate.queryForObject(sql, Integer.class, loginId);
             return count > 0;
         } catch (DataAccessException e) {
@@ -33,7 +33,7 @@ public class AdminDAO {
 
     public void save(Admin admin) {
         try {
-            String sql = "INSERT INTO admin (login_id, name, password, phone_number, sms_agree, sms_agreed_at) " +
+            String sql = "INSERT INTO admin (admin_login_id, name, password, phone_number, sms_agree, sms_agreed_at) " +
                         "VALUES (?, ?, ?, ?, ?, ?)";
 
             Timestamp smsAgreedAt = null;
@@ -42,7 +42,7 @@ public class AdminDAO {
             }
 
             jdbcTemplate.update(sql,
-                admin.getLoginId(),
+                admin.getAdminLoginId(),
                 admin.getName(),
                 admin.getPassword(),
                 admin.getPhoneNumber(),
@@ -56,7 +56,7 @@ public class AdminDAO {
 
     public Admin findByLoginId(String loginId) {
         try {
-            String sql = "SELECT * FROM admin WHERE login_id = ?";
+            String sql = "SELECT * FROM admin WHERE admin_login_id = ?";
             return jdbcTemplate.queryForObject(sql, adminRowMapper, loginId);
         } catch (EmptyResultDataAccessException e) {
             return null;
@@ -70,7 +70,7 @@ public class AdminDAO {
         public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
             Admin admin = new Admin();
             admin.setId(rs.getLong("id"));
-            admin.setLoginId(rs.getString("login_id"));
+            admin.setAdminLoginId(rs.getString("admin_login_id"));
             admin.setName(rs.getString("name"));
             admin.setPassword(rs.getString("password"));
             admin.setPhoneNumber(rs.getString("phone_number"));

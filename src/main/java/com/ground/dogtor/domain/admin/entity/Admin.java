@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Admin {
     private Long id;
-    private String loginId;
+    private String adminLoginId;
     private String name;
     private String password;
     private String phoneNumber;

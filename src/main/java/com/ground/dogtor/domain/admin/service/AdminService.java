@@ -25,7 +25,7 @@ public class AdminService {
     @Transactional
     public void signUp(AdminSignUpRequest request) {
         // 1. 입력값 검증
-        if (!StringUtils.hasText(request.getLoginId())) {
+        if (!StringUtils.hasText(request.getAdminLoginId())) {
             throw new IllegalArgumentException("아이디는 필수입니다.");
         }
         if (!StringUtils.hasText(request.getPassword())) {
@@ -39,7 +39,7 @@ public class AdminService {
         }
 
         // 2. 아이디 중복 체크
-        if (adminDAO.existsByLoginId(request.getLoginId())) {
+        if (adminDAO.existsByLoginId(request.getAdminLoginId())) {
             throw new IllegalArgumentException("이미 사용 중인 아이디입니다.");
         }
 
@@ -56,7 +56,7 @@ public class AdminService {
 
         // 5. 관리자 정보 저장
         Admin admin = new Admin();
-        admin.setLoginId(request.getLoginId());
+        admin.setAdminLoginId(request.getAdminLoginId());
         admin.setName(request.getName());
         admin.setPassword(encodedPassword);
         admin.setPhoneNumber(request.getPhoneNumber());
@@ -70,7 +70,7 @@ public class AdminService {
 
     public Admin login(AdminLoginRequest request) {
         // 1. 입력값 검증
-        if (!StringUtils.hasText(request.getLoginId())) {
+        if (!StringUtils.hasText(request.getAdminLoginId())) {
             throw new IllegalArgumentException("아이디를 입력하세요.");
         }
         if (!StringUtils.hasText(request.getPassword())) {
@@ -78,7 +78,7 @@ public class AdminService {
         }
 
         // 2. 관리자 조회
-        Admin admin = adminDAO.findByLoginId(request.getLoginId());
+        Admin admin = adminDAO.findByLoginId(request.getAdminLoginId());
         if (admin == null) {
             throw new IllegalArgumentException("존재하지 않는 아이디입니다.");
         }
