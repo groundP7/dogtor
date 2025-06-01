@@ -248,7 +248,7 @@
                 <i class="fas fa-cog"></i>
                 <span>설정</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="location.href='/admin/logout'">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>로그아웃</span>
             </div>
