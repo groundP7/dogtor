@@ -65,6 +65,19 @@ public class AdminDAO {
         }
     }
 
+    public void updateRefreshToken(Long adminId, String refreshToken) {
+        try {
+            String sql = "UPDATE admin SET refresh_token = ? WHERE id = ?";
+            int updatedRows = jdbcTemplate.update(sql, refreshToken, adminId);
+            
+            if (updatedRows != 1) {
+                throw new RuntimeException("Refresh Token 업데이트에 실패했습니다.");
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Refresh Token 업데이트 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
     private static class AdminRowMapper implements RowMapper<Admin> {
         @Override
         public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -85,6 +98,8 @@ public class AdminDAO {
             if (createdAt != null) {
                 admin.setCreatedAt(createdAt.toString());
             }
+
+            admin.setRefreshToken(rs.getString("refresh_token"));
             
             return admin;
         }

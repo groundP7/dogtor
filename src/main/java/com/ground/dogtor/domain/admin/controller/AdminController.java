@@ -1,11 +1,14 @@
 package com.ground.dogtor.domain.admin.controller;
 
 import com.ground.dogtor.domain.admin.dto.AdminLoginRequest;
+import com.ground.dogtor.domain.admin.dto.AdminLoginResponse;
 import com.ground.dogtor.domain.admin.dto.AdminSignUpRequest;
 import com.ground.dogtor.domain.admin.entity.Admin;
 import com.ground.dogtor.domain.admin.service.AdminService;
 import com.ground.dogtor.domain.product.entity.Product;
 import com.ground.dogtor.domain.product.service.ProductService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -59,11 +62,31 @@ public class AdminController {
     @ResponseBody
     public ResponseEntity<Map<String, Object>> login(
             @ModelAttribute AdminLoginRequest request,
-            HttpSession session) {
+            HttpSession session,
+            HttpServletResponse response) {
         try {
-            Admin admin = adminService.login(request);
-            session.setAttribute("adminId", admin.getId());
-            session.setAttribute("adminName", admin.getName());
+            AdminLoginResponse loginResponse = adminService.login(request);
+            
+            // 세션에 필요한 정보만 저장
+            session.setAttribute("adminId", loginResponse.getAdminId());
+            session.setAttribute("adminName", loginResponse.getName());
+            
+            // Access Token을 쿠키에 저장
+            Cookie accessTokenCookie = new Cookie("accessToken", loginResponse.getAccessToken());
+            accessTokenCookie.setHttpOnly(true);
+            accessTokenCookie.setSecure(true);
+            accessTokenCookie.setPath("/");
+            accessTokenCookie.setMaxAge(3600); // 1시간
+            response.addCookie(accessTokenCookie);
+            
+            // Refresh Token을 쿠키에 저장
+            Cookie refreshTokenCookie = new Cookie("refreshToken", loginResponse.getRefreshToken());
+            refreshTokenCookie.setHttpOnly(true);
+            refreshTokenCookie.setSecure(true);
+            refreshTokenCookie.setPath("/");
+            refreshTokenCookie.setMaxAge(7 * 24 * 3600); // 7일
+            response.addCookie(refreshTokenCookie);
+
             return ResponseEntity.ok(Map.of("success", true));
         } catch (Exception e) {
             return ResponseEntity.ok(Map.of(
@@ -73,10 +96,23 @@ public class AdminController {
         }
     }
 
-    // 관리자 로그아웃 페이지
+    // 관리자 로그아웃
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, HttpServletResponse response) {
+        // 세션 무효화
         session.invalidate();
+        
+        // 쿠키 삭제
+        Cookie accessTokenCookie = new Cookie("accessToken", null);
+        accessTokenCookie.setMaxAge(0);
+        accessTokenCookie.setPath("/");
+        response.addCookie(accessTokenCookie);
+        
+        Cookie refreshTokenCookie = new Cookie("refreshToken", null);
+        refreshTokenCookie.setMaxAge(0);
+        refreshTokenCookie.setPath("/");
+        response.addCookie(refreshTokenCookie);
+        
         return "redirect:/admin/login";
     }
 

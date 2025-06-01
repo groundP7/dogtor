@@ -18,4 +18,5 @@ public class Admin {
     private boolean smsAgree;
     private String smsAgreedAt;
     private String createdAt;
+    private String refreshToken;
 } 
