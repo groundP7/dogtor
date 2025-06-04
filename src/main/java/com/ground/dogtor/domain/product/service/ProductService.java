@@ -88,6 +88,10 @@ public class ProductService {
         return product;
     }
 
+    public List<Product> getProductsByCategory(String category) {
+        return productDAO.findByCategory(category);
+    }
+
     private void validateProduct(Product product) {
         if (!StringUtils.hasText(product.getName())) {
             throw new IllegalArgumentException("제품명은 필수입니다.");

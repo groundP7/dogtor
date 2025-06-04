@@ -109,6 +109,15 @@ public class ProductDAO {
         }
     }
 
+    public List<Product> findByCategory(String category) {
+        try {
+            String sql = "SELECT * FROM product WHERE category = ? ORDER BY id DESC";
+            return jdbcTemplate.query(sql, productRowMapper, category);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("제품 목록 조회 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
     private static class ProductRowMapper implements RowMapper<Product> {
         @Override
         public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
