@@ -162,6 +162,7 @@ public class AdminController {
         }
 
         try {
+            product.setAdminId(adminId);
             productService.createProduct(product, image);
             return ResponseEntity.ok(Map.of("success", true));
         } catch (Exception e) {

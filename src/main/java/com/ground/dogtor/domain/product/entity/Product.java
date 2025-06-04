@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Product {
     private Long id;
+    private Long adminId;
     private String name;
     private String category;
     private String description;
@@ -18,5 +19,5 @@ public class Product {
     private int stock;
     private String imageUrl;
     private String createdAt;
-    private String updatedAt;
-} 
+    
+}

@@ -27,8 +27,8 @@ public class ProductDAO {
 
     public void save(Product product) {
         try {
-            String sql = "INSERT INTO product (name, category, description, price, stock, image_url) " +
-                        "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO product (name, category, description, price, stock, image_url, admin_id) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -40,6 +40,7 @@ public class ProductDAO {
                 ps.setInt(4, product.getPrice());
                 ps.setInt(5, product.getStock());
                 ps.setString(6, product.getImageUrl());
+                ps.setLong(7, product.getAdminId());
                 return ps;
             }, keyHolder);
 
@@ -125,12 +126,8 @@ public class ProductDAO {
                 product.setCreatedAt(createdAt.toString());
             }
             
-            Timestamp updatedAt = rs.getTimestamp("updated_at");
-            if (updatedAt != null) {
-                product.setUpdatedAt(updatedAt.toString());
-            }
-            
             return product;
+
         }
     }
 } 
